@@ -26,7 +26,7 @@ public class FlightControllerTests {
     public void shouldCreateFlight() throws Exception {
         mockMvc.perform(post("/flights")
                         .contentType("application/json")
-                        .content("{\"departureAirport\": \"Airport1\", \"arrivalAirport\": \"Airport2\", \"departureTime\": \"2023-01-01T12:00:00\", \"arrivalTime\": \"2023-01-01T15:00:00\", \"price\": 100}"))
+                        .content("{\"departureAirport\": \"Airport1\", \"arrivalAirport\": \"Airport2\", \"departureTime\": \"2023-01-01T12:00:00\", \"returnTime\": \"2023-01-01T15:00:00\", \"price\": 100}"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Airport1"))); // Bu, dönen cevabın içeriğine bağlı olarak değiştirilmelidir.
     }

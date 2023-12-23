@@ -21,6 +21,7 @@ public class FlightController {
         return flightService.createFlight(flight);
     }
 
+
     // Read
     @GetMapping("/{id}")
     public Flight getFlightById(@PathVariable Long id) {

@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Flight {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) //Identity
     private Long id;
 
     @ManyToOne
@@ -30,7 +30,7 @@ public class Flight {
     private Airport arrivalAirport;
 
     private LocalDateTime departureTime;
-    private LocalDateTime arrivalTime;
+    private LocalDateTime returnTime;
     private Double price;
 
 }

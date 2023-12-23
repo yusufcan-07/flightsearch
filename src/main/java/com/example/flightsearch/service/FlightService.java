@@ -38,13 +38,11 @@ public class FlightService {
     }
     public List<Flight> searchFlights(String departureCity, String arrivalCity, LocalDateTime departureTime, LocalDateTime returnTime) {
         if (returnTime == null) {
-
-            return flightRepository.findByDepartureAndArrival(departureCity, arrivalCity, departureTime);
+            // Tek yönlü uçuş arama
+            return flightRepository.findFlights(departureCity, arrivalCity, departureTime);
         } else {
-
-            List<Flight> flights = flightRepository.findByDepartureAndArrival(departureCity, arrivalCity, departureTime);
-            flights.addAll(flightRepository.findByDepartureAndArrival(arrivalCity, departureCity, returnTime));
-            return flights;
+            // Çift yönlü uçuş arama
+            return flightRepository.findRoundTripFlights(departureCity, arrivalCity, departureTime, returnTime);
         }
     }
 
