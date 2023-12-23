@@ -2,8 +2,10 @@ package com.example.flightsearch.controller;
 import com.example.flightsearch.entity.Flight;
 import com.example.flightsearch.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -42,4 +44,13 @@ public class FlightController {
         flightService.deleteFlight(id);
     }
 
+    @GetMapping("/search")
+    public List<Flight> searchFlights(
+            @RequestParam(required = false) String departureCity,
+            @RequestParam(required = false) String arrivalCity,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime departureTime,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime returnTime) {
+
+        return flightService.searchFlights(departureCity, arrivalCity, departureTime, returnTime);
+    }
 }

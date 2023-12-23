@@ -5,6 +5,7 @@ import com.example.flightsearch.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -34,6 +35,17 @@ public class FlightService {
     // Delete
     public void deleteFlight(Long id) {
         flightRepository.deleteById(id);
+    }
+    public List<Flight> searchFlights(String departureCity, String arrivalCity, LocalDateTime departureTime, LocalDateTime returnTime) {
+        if (returnTime == null) {
+
+            return flightRepository.findByDepartureAndArrival(departureCity, arrivalCity, departureTime);
+        } else {
+
+            List<Flight> flights = flightRepository.findByDepartureAndArrival(departureCity, arrivalCity, departureTime);
+            flights.addAll(flightRepository.findByDepartureAndArrival(arrivalCity, departureCity, returnTime));
+            return flights;
+        }
     }
 
 }
