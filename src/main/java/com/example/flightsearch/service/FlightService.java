@@ -38,10 +38,10 @@ public class FlightService {
     }
     public List<Flight> searchFlights(String departureCity, String arrivalCity, LocalDateTime departureTime, LocalDateTime returnTime) {
         if (returnTime == null) {
-            // Tek yönlü uçuş arama
+            // single direction
             return flightRepository.findFlights(departureCity, arrivalCity, departureTime);
         } else {
-            // Çift yönlü uçuş arama
+            // round direction
             return flightRepository.findRoundTripFlights(departureCity, arrivalCity, departureTime, returnTime);
         }
     }
