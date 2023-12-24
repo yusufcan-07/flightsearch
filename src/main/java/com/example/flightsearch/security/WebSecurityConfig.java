@@ -18,15 +18,15 @@ public class WebSecurityConfig {
         var userDetailsService = new InMemoryUserDetailsManager(
                 User.withUsername("user")
                         .password(passwordEncoder().encode("password"))
-                        .roles("USER")
+                        .roles("ADMIN")
                         .build());
 
         auth.userDetailsService(userDetailsService);
     }
 
+
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // Üretimde güvenli bir şifreleme yöntemi kullanılmalıdır.
         return NoOpPasswordEncoder.getInstance();
     }
 }
